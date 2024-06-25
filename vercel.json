@@ -7,18 +7,7 @@
     }
   ],
   "routes": [
-    { "handle": "filesystem" },
-    {
-      "src": "/socket.io/(.*)",
-      "dest": "https://your-socket-server.vercel.app/socket.io/$1",
-      "headers": {
-        "upgrade": "websocket"
-      }
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/app.js"
-    }
+    { "src": "/(.*)", "dest": "/app.js" }
   ],
   "env": {
     "NODE_ENV": "production"
