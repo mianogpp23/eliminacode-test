@@ -7,13 +7,13 @@
     }
   ],
   "routes": [
+    { "handle": "filesystem" },
     {
       "src": "/socket.io/(.*)",
-      "dest": "http://localhost:3000/socket.io/$1",
+      "dest": "https://your-socket-server.vercel.app/socket.io/$1",
       "headers": {
         "upgrade": "websocket"
-      },
-      "methods": ["GET", "POST"]
+      }
     },
     {
       "src": "/(.*)",
