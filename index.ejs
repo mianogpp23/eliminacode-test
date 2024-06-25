@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studiomedico Cascino</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Assicurati che il percorso sia corretto -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #3b6c91; /* Verde mare per lo sfondo */
+            color: #fff; /* Testo bianco per il contrasto */
+        }
+        .header {
+            font-size: 88px; /* Dimensione del testo per l'intestazione */
+            text-transform: uppercase; /* Testo in maiuscolo */
+            margin-bottom: 30px; /* Spazio inferiore per separare dall'inizio del contenuto */
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .card {
+            background-color: #fff; /* Sfondo bianco delle card */
+            color: #900; /* Colore rosso scuro per il testo */
+            border: 2px solid #ccc; /* Bordo grigio */
+            padding: 10px; /* Padding interno delle card */
+            width: 300px; /* Larghezza delle card */
+            margin: 20px; /* Margine tra le card */
+        }
+        .card h1 {
+            font-size: 48px; /* Dimensione del testo per il titolo */
+            text-transform: uppercase; /* Testo in maiuscolo */
+            margin-bottom: 10px; /* Spazio inferiore tra il titolo e la casella di testo */
+        }
+        .text-input {
+            font-size: 100px; /* Dimensione del testo della casella di testo */
+            width: 100%; /* Larghezza massima della casella di testo */
+            text-align: center;
+            border: none; /* Rimuove il bordo */
+            outline: none; /* Rimuove il contorno al focus */
+            background-color: transparent; /* Sfondo trasparente */
+            padding: 10px 0; /* Padding interno */
+        }
+        .footer-marquee {
+            background-color: #3b6c91; /* Colore di sfondo */
+            color: #fff; /* Colore del testo */
+            padding: 20px;
+            text-align: center;
+            font-size: 40px; /* Dimensione del testo per il footer */
+            line-height: 1.5; /* Altezza della riga per migliorare la leggibilità */
+        }
+        .marquee-container {
+            overflow: hidden; /* Nasconde il testo oltre il div */
+            white-space: nowrap; /* Evita il wrapping del testo */
+            height: 80px; /* Altezza del contenitore del testo scorrevole */
+        }
+        .marquee-text {
+            animation: marquee 20s linear infinite; /* Animazione */
+            font-size: 72px; /* Dimensione del testo scorrevole */
+        }
+        @keyframes marquee {
+            0%   { transform: translateX(100%); } /* Parte da destra */
+            100% { transform: translateX(-100%); } /* Arriva a sinistra */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">STUDIOMEDICO CASCINO</div>
+    <div class="container">
+        <div class="card">
+            <h1>SALA 1</h1>
+            <input class="text-input" id="text1" type="text" value="<%= initialValue1 %>" readonly>
+        </div>
+
+        <div class="card">
+            <h1>SALA 2</h1>
+            <input class="text-input" id="text2" type="text" value="<%= initialValue2 %>" readonly>
+        </div>
+
+        <div class="card">
+            <h1>SALA 3</h1>
+            <input class="text-input" id="text3" type="text" value="<%= initialValue3 %>" readonly>
+        </div>
+
+        <div class="card">
+            <h1>Infermeria</h1>
+            <input class="text-input" id="text4" type="text" value="<%= initialValue4 %>" readonly>
+        </div>
+    </div>
+
+    <!-- Testo di benvenuto a piè di pagina -->
+    <div class="footer-marquee">
+        <div class="marquee-container">
+            <div class="marquee-text">
+                <span>Benvenuti nello Studio Medico Cascino. Assicurarsi di prendere il numero relativo alla sala del vostro medico. Controllare sul monitor quando è il vostro turno. Per ulteriori informazioni chiedete alle assistenti.</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        socket.on('updateValues', data => {
+            document.getElementById('text1').value = data.initialValue1;
+            document.getElementById('text2').value = data.initialValue2;
+            document.getElementById('text3').value = data.initialValue3;
+            document.getElementById('text4').value = data.initialValue4;
+        });
+    </script>
+</body>
+</html>
