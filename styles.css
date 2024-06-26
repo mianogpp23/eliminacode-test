@@ -1,0 +1,69 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+    background-color: #3b6c91; /* Verde mare per lo sfondo */
+    color: #fff; /* Testo bianco per il contrasto */
+}
+
+.header {
+    font-size: 88px; /* Dimensione del testo per l'intestazione */
+    text-transform: uppercase; /* Testo in maiuscolo */
+    margin-bottom: 30px; /* Spazio inferiore per separare dall'inizio del contenuto */
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #fff; /* Sfondo bianco delle card */
+    color: #900; /* Colore rosso scuro per il testo */
+    border: 2px solid #ccc; /* Bordo grigio */
+    padding: 10px; /* Padding interno delle card */
+    width: 300px; /* Larghezza delle card */
+    margin: 20px; /* Margine tra le card */
+}
+
+.card h1 {
+    font-size: 48px; /* Dimensione del testo per il titolo */
+    text-transform: uppercase; /* Testo in maiuscolo */
+    margin-bottom: 10px; /* Spazio inferiore tra il titolo e la casella di testo */
+}
+
+.text-input {
+    font-size: 100px; /* Dimensione del testo della casella di testo */
+    width: 100%; /* Larghezza massima della casella di testo */
+    text-align: center;
+    border: none; /* Rimuove il bordo */
+    outline: none; /* Rimuove il contorno al focus */
+    background-color: transparent; /* Sfondo trasparente */
+    padding: 10px 0; /* Padding interno */
+}
+
+.footer-marquee {
+    background-color: #3b6c91; /* Colore di sfondo */
+    color: #fff; /* Colore del testo */
+    padding: 20px;
+    text-align: center;
+    font-size: 40px; /* Dimensione del testo per il footer */
+    line-height: 1.5; /* Altezza della riga per migliorare la leggibilità */
+}
+
+.marquee-container {
+    overflow: hidden; /* Nasconde il testo oltre il div */
+    white-space: nowrap; /* Evita il wrapping del testo */
+    height: 80px; /* Altezza del contenitore del testo scorrevole */
+}
+
+.marquee-text {
+    animation: marquee 20s linear infinite; /* Animazione */
+    font-size: 72px; /* Dimensione del testo scorrevole */
+}
+
+@keyframes marquee {
+    0%   { transform: translateX(100%); } /* Parte da destra */
+    100% { transform: translateX(-100%); } /* Arriva a sinistra */
+}

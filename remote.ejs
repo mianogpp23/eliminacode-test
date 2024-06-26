@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telecomando Studio Medico Cascino</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #3b6c91;
+            color: #fff;
+        }
+        .header {
+            font-size: 48px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .card {
+            background-color: #fff;
+            color: #900;
+            border: 2px solid #ccc;
+            padding: 10px;
+            width: 300px;
+            margin: 20px;
+        }
+        .card h1 {
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .text-input {
+            font-size: 24px;
+            width: 100%;
+            text-align: center;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            padding: 10px 0;
+            color: #000;
+        }
+        .btn-group {
+            margin-top: 10px;
+        }
+        .btn {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+        }
+        .btn:disabled {
+            background-color: #ccc;
+        }
+        .set-input {
+            width: 60%;
+            font-size: 24px;
+            margin-top: 10px;
+        }
+        .set-btn {
+            font-size: 16px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Telecomando Studio Medico Cascino</div>
+    <div class="container">
+        <div class="card">
+            <h1>SALA 1</h1>
+            <form action="/remote" method="POST">
+                <input class="text-input" name="value1" type="number" value="<%= initialValue1 %>">
+                <div class="btn-group">
+                    <button class="btn" type="submit" name="action" value="increase1">Aumenta</button>
+                    <button class="btn" type="submit" name="action" value="decrease1">Diminuisci</button>
+                </div>
+                <button class="set-btn" type="submit" name="action" value="set1">Imposta</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h1>SALA 2</h1>
+            <form action="/remote" method="POST">
+                <input class="text-input" name="value2" type="number" value="<%= initialValue2 %>">
+                <div class="btn-group">
+                    <button class="btn" type="submit" name="action" value="increase2">Aumenta</button>
+                    <button class="btn" type="submit" name="action" value="decrease2">Diminuisci</button>
+                </div>
+                <button class="set-btn" type="submit" name="action" value="set2">Imposta</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h1>SALA 3</h1>
+            <form action="/remote" method="POST">
+                <input class="text-input" name="value3" type="number" value="<%= initialValue3 %>">
+                <div class="btn-group">
+                    <button class="btn" type="submit" name="action" value="increase3">Aumenta</button>
+                    <button class="btn" type="submit" name="action" value="decrease3">Diminuisci</button>
+                </div>
+                <button class="set-btn" type="submit" name="action" value="set3">Imposta</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h1>Infermeria</h1>
+            <form action="/remote" method="POST">
+                <input class="text-input" name="value4" type="number" value="<%= initialValue4 %>">
+                <div class="btn-group">
+                    <button class="btn" type="submit" name="action" value="increase4">Aumenta</button>
+                    <button class="btn" type="submit" name="action" value="decrease4">Diminuisci</button>
+                </div>
+                <button class="set-btn" type="submit" name="action" value="set4">Imposta</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        socket.on('updateValues', (data) => {
+            document.querySelector('input[name="value1"]').value = data.initialValue1;
+            document.querySelector('input[name="value2"]').value = data.initialValue2;
+            document.querySelector('input[name="value3"]').value = data.initialValue3;
+            document.querySelector('input[name="value4"]').value = data.initialValue4;
+        });
+    </script>
+</body>
+</html>

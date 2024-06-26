@@ -47,14 +47,20 @@ app.get('/remote', (req, res) => {
 // Gestione delle richieste POST per ogni form su /remote
 app.post('/remote', (req, res) => {
   const action = req.body.action;
+  const value1 = parseInt(req.body.value1, 10) || initialValue1;
+  const value2 = parseInt(req.body.value2, 10) || initialValue2;
+  const value3 = parseInt(req.body.value3, 10) || initialValue3;
+  const value4 = parseInt(req.body.value4, 10) || initialValue4;
 
-  // Esegui l'azione richiesta per ciascuna sala
   switch (action) {
-    case 'increase':
+    case 'increase1':
       initialValue1++;
       break;
-    case 'decrease':
+    case 'decrease1':
       initialValue1--;
+      break;
+    case 'set1':
+      initialValue1 = value1;
       break;
     case 'increase2':
       initialValue2++;
@@ -62,11 +68,17 @@ app.post('/remote', (req, res) => {
     case 'decrease2':
       initialValue2--;
       break;
+    case 'set2':
+      initialValue2 = value2;
+      break;
     case 'increase3':
       initialValue3++;
       break;
     case 'decrease3':
       initialValue3--;
+      break;
+    case 'set3':
+      initialValue3 = value3;
       break;
     case 'increase4':
       initialValue4++;
@@ -74,12 +86,13 @@ app.post('/remote', (req, res) => {
     case 'decrease4':
       initialValue4--;
       break;
+    case 'set4':
+      initialValue4 = value4;
+      break;
     default:
-      // Gestione di azioni non riconosciute (opzionale)
       break;
   }
 
-  // Emissione dei nuovi valori ai client connessi
   io.emit('updateValues', {
     initialValue1: initialValue1,
     initialValue2: initialValue2,
@@ -87,7 +100,6 @@ app.post('/remote', (req, res) => {
     initialValue4: initialValue4
   });
 
-  // Redirect alla pagina del telecomando dopo l'aggiornamento dei valori
   res.redirect('/remote');
 });
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studiomedico Cascino</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="header">STUDIOMEDICO CASCINO</div>
+    <div class="container">
+        <div class="card">
+            <h1>SALA 1</h1>
+            <input class="text-input" id="text1" type="text" value="<%= initialValue1 %>" readonly>
+        </div>
+        <div class="card">
+            <h1>SALA 2</h1>
+            <input class="text-input" id="text2" type="text" value="<%= initialValue2 %>" readonly>
+        </div>
+        <div class="card">
+            <h1>SALA 3</h1>
+            <input class="text-input" id="text3" type="text" value="<%= initialValue3 %>" readonly>
+        </div>
+        <div class="card">
+            <h1>Infermeria</h1>
+            <input class="text-input" id="text4" type="text" value="<%= initialValue4 %>" readonly>
+        </div>
+    </div>
+    <div class="footer-marquee">
+        <div class="marquee-container">
+            <div class="marquee-text">
+                <span>Benvenuti nello Studio Medico Cascino. Assicurarsi di prendere il numero relativo alla sala del vostro medico. Controllare sul monitor quando è il vostro turno. Per ulteriori informazioni chiedete alle assistenti.</span>
+            </div>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        socket.on('updateValues', data => {
+            document.getElementById('text1').value = data.initialValue1;
+            document.getElementById('text2').value = data.initialValue2;
+            document.getElementById('text3').value = data.initialValue3;
+            document.getElementById('text4').value = data.initialValue4;
+        });
+    </script>
+</body>
+</html>
