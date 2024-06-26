@@ -6,7 +6,13 @@ const socketIo = require('socket.io');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
+const io = socketIo(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  },
+  transports: ['polling'] // Abilita il trasporto di polling per Socket.IO
+});
 
 // Middleware per gestire il parsing dei dati del form
 app.use(bodyParser.urlencoded({ extended: true }));
