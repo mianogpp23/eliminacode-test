@@ -33,9 +33,13 @@
             </div>
         </div>
     </div>
+    <!-- Includi il client Socket.IO -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
+        // Inizializzazione del client Socket.IO
         const socket = io();
+
+        // Gestione dell'evento 'updateValues' per aggiornare i valori delle sale
         socket.on('updateValues', data => {
             document.getElementById('text1').value = data.initialValue1;
             document.getElementById('text2').value = data.initialValue2;
